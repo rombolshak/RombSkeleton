@@ -7,7 +7,7 @@ environment:
   secret_for_snk:
     secure: 9wAuC5ZEdGrfCqltk4Ax6Q==
   COVERALLS_REPO_TOKEN:
-    secure: Nc+8AigwvdjA+ZI4UN+H6GNjrRoUev7PvELiyzGaxhDZSqGVacGEezM5/Cf0hJVf
+    secure: C5rzrcxa1tpwN/APHa/93zFZpxAtnj0aol81DhY0w78cyn+Aj1kUIMbwSAG6B+jx
   
 install:
   - choco install gitversion.portable -pre -y
