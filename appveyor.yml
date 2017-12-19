@@ -12,7 +12,7 @@ environment:
 
 dotnet_csproj:
   patch: true
-  file: '**\*.csproj'
+  file: '{APPVEYOR_BUILD_FOLDER}\**\*.csproj'
   version: '{APPVEYOR_BUILD_VERSION}'
   assembly_version: '{APPVEYOR_BUILD_VERSION}'
   file_version: '{APPVEYOR_BUILD_VERSION}'
@@ -20,7 +20,7 @@ dotnet_csproj:
 
 assembly_info:
   patch: true
-  file: '**\AssemblyInfo.*'
+  file: '{APPVEYOR_BUILD_FOLDER}\**\AssemblyInfo.*'
   assembly_version: '{APPVEYOR_BUILD_VERSION}'
   assembly_file_version: '{APPVEYOR_BUILD_VERSION}'
   assembly_informational_version: '{APPVEYOR_BUILD_VERSION}'
@@ -35,11 +35,11 @@ install:
   - nuget install secure-file -ExcludeVersion
   - nuget install OpenCover -ExcludeVersion
   - nuget install coveralls.net -ExcludeVersion
-  - secure-file\tools\secure-file -decrypt %APPVEYOR_BUILD_FOLDER%\tools\Key\Key.snk.enc -secret %secret_for_snk%
+  - secure-file\tools\secure-file -decrypt %APPVEYOR_BUILD_FOLDER%\tools\Key\Key.snk.enc -secret %secret_for_snk%  
+  - gitversion /l console /output buildserver
 
 before_build:
   - dotnet restore src\%productName%.sln
-  - ps: gitversion /l console /output buildserver
   - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%productName%" /n:"%productName%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
 
 build_script:
