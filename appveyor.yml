@@ -1,7 +1,7 @@
 configuration: Release
 
 environment:
-  productName: Skeleton
+  productName: RombSkeleton
   sonar_login:
     secure: +fPGU8/Ueb05tX4cbo3EoLSMmS2EW0Ln0TtxKSHUo55LrJMvyvE2CqK7dRcGtL01
   secret_for_snk:
@@ -19,7 +19,7 @@ install:
   - secure-file\tools\secure-file -decrypt %APPVEYOR_BUILD_FOLDER%\tools\Key\Key.snk.enc -secret %secret_for_snk%
 
 before_build:
-  - nuget restore src\%productName%.sln
+  - dotnet restore src\%productName%.sln
   - ps: gitversion /l console /output buildserver /updateAssemblyInfo tools/build/AssemblyVersion.cs /ensureassemblyinfo
   - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%productName%" /n:"%productName%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
 
