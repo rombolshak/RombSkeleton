@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeleton", "src\RombSkeleton\RombSkeleton.csproj", "{825E4063-C868-42E3-89A0-AE2B7118B90D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeleton", "RombSkeleton\RombSkeleton.csproj", "{825E4063-C868-42E3-89A0-AE2B7118B90D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeletonTests", "src\RombSkeletonTests\RombSkeletonTests.csproj", "{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeletonTests", "RombSkeletonTests\RombSkeletonTests.csproj", "{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
