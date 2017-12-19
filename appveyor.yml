@@ -14,15 +14,15 @@ dotnet_csproj:
   patch: true
   file: '**\*.csproj'
   version: '{version}'
-  assembly_version: '{version}'
-  file_version: '{version}'
+  assembly_version: '$(GitVersion_AssemblySemVer)'
+  file_version: '$(GitVersion_AssemblySemVer)'
   informational_version: '{version}'
 
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
-  assembly_version: '{version}'
-  assembly_file_version: '{version}'
+  assembly_version: '$(GitVersion_AssemblySemVer)'
+  assembly_file_version: '$(GitVersion_AssemblySemVer)'
   assembly_informational_version: '{version}'
 
 cache:
