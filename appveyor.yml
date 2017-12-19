@@ -1,4 +1,5 @@
 configuration: Release
+image: Visual Studio 2017
 
 environment:
   productName: RombSkeleton
@@ -8,6 +9,17 @@ environment:
     secure: 9wAuC5ZEdGrfCqltk4Ax6Q==
   COVERALLS_REPO_TOKEN:
     secure: C5rzrcxa1tpwN/APHa/93zFZpxAtnj0aol81DhY0w78cyn+Aj1kUIMbwSAG6B+jx
+	
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{APPVEYOR_BUILD_VERSION}'
+  assembly_version: '{APPVEYOR_BUILD_VERSION}'
+  file_version: '{APPVEYOR_BUILD_VERSION}'
+  informational_version: '{APPVEYOR_BUILD_VERSION}'
+  
+cache:
+  - C:\ProgramData\chocolatey -> appveyor.yml
   
 install:
   - choco install gitversion.portable -pre -y
@@ -20,11 +32,11 @@ install:
 
 before_build:
   - dotnet restore src\%productName%.sln
-  - ps: gitversion /l console /output buildserver /updateAssemblyInfo tools/build/AssemblyVersion.cs /ensureassemblyinfo
+  - ps: gitversion /l console /output buildserver
   - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%productName%" /n:"%productName%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
 
-build:
-  project: src\%productName%.sln
+build_script:
+  - ps: dotnet build src\%productName%.sln
 
 after_build:
   - ps: inspectcode.exe /o:src\Build\ReSharperRules\ListOfIssues.xml src\%productName%.sln
@@ -32,11 +44,11 @@ after_build:
   - ps: tools\Build\ReSharperRules\ProblemsChecker.ps1 -pathToFilteredXml src\Build\ReSharperRules\FilteredListOfIssues.xml
 
 test_script:
-  - OpenCover\tools\OpenCover.Console.exe -target:powershell.exe -targetargs:%APPVEYOR_BUILD_FOLDER%\tools\nunit_test.ps1 -filter:"+[*]* -[*.Tests]*" -register:user -returntargetcode 
+  - OpenCover\tools\OpenCover.Console.exe -target:powershell.exe -targetargs:%APPVEYOR_BUILD_FOLDER%\tools\xunit_test.ps1 -filter:"+[*]* -[*.Tests]*" -register:user -returntargetcode 
   
 after_test:
   - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\results.xml
-  #- ps: $wc = New-Object 'System.Net.WebClient'; $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestResult.xml))
+  #- ps: $wc = New-Object 'System.Net.WebClient'; $wc.UploadFile("https://ci.appveyor.com/api/testresults/xunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestResult.xml))
   - MSBuild.SonarQube.Runner.exe end /d:sonar.login=%sonar_login%
   
 artifacts:
