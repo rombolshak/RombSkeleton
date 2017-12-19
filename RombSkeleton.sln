@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeleton", "src\RombSkeleton\RombSkeleton.csproj", "{825E4063-C868-42E3-89A0-AE2B7118B90D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeletonTests", "src\RombSkeletonTests\RombSkeletonTests.csproj", "{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{825E4063-C868-42E3-89A0-AE2B7118B90D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{825E4063-C868-42E3-89A0-AE2B7118B90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{825E4063-C868-42E3-89A0-AE2B7118B90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{825E4063-C868-42E3-89A0-AE2B7118B90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9FC503D5-C881-46BF-B674-07FC01967581}
+	EndGlobalSection
+EndGlobal

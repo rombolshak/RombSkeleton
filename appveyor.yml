@@ -1,0 +1,43 @@
+configuration: Release
+
+environment:
+  productName: Skeleton
+  sonar_login:
+    secure: +fPGU8/Ueb05tX4cbo3EoLSMmS2EW0Ln0TtxKSHUo55LrJMvyvE2CqK7dRcGtL01
+  secret_for_snk:
+    secure: 9wAuC5ZEdGrfCqltk4Ax6Q==
+  COVERALLS_REPO_TOKEN:
+    secure: Nc+8AigwvdjA+ZI4UN+H6GNjrRoUev7PvELiyzGaxhDZSqGVacGEezM5/Cf0hJVf
+  
+install:
+  - choco install gitversion.portable -pre -y
+  - choco install resharper-clt -y
+  - choco install "msbuild-sonarqube-runner" -y
+  - nuget install secure-file -ExcludeVersion
+  - nuget install OpenCover -ExcludeVersion
+  - nuget install coveralls.net -ExcludeVersion
+  - secure-file\tools\secure-file -decrypt %APPVEYOR_BUILD_FOLDER%\tools\Key\Key.snk.enc -secret %secret_for_snk%
+
+before_build:
+  - nuget restore src\%productName%.sln
+  - ps: gitversion /l console /output buildserver /updateAssemblyInfo tools/build/AssemblyVersion.cs /ensureassemblyinfo
+  - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%productName%" /n:"%productName%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
+
+build:
+  project: src\%productName%.sln
+
+after_build:
+  - ps: inspectcode.exe /o:src\Build\ReSharperRules\ListOfIssues.xml src\%productName%.sln
+  - ps: tools\Build\ReSharperRules\OutputAnalyzeFilter.ps1
+  - ps: tools\Build\ReSharperRules\ProblemsChecker.ps1 -pathToFilteredXml src\Build\ReSharperRules\FilteredListOfIssues.xml
+
+test_script:
+  - OpenCover\tools\OpenCover.Console.exe -target:powershell.exe -targetargs:%APPVEYOR_BUILD_FOLDER%\tools\nunit_test.ps1 -filter:"+[*]* -[*.Tests]*" -register:user -returntargetcode 
+  
+after_test:
+  - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\results.xml
+  #- ps: $wc = New-Object 'System.Net.WebClient'; $wc.UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\TestResult.xml))
+  - MSBuild.SonarQube.Runner.exe end /d:sonar.login=%sonar_login%
+  
+artifacts:
+  - path: bin\Release

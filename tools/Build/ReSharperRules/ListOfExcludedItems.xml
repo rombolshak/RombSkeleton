@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Lists>
+  <ListOfExcludedMessages>
+    <Issue Message="Access to foreach variable in closure. May have different behaviour when compiled with different versions of compiler" />
+    <Issue Message="Possible multiple enumeration of IEnumerable" />
+	
+  </ListOfExcludedMessages>
+  <ListOfPathsTemplatesForSpecificMessages>
+  </ListOfPathsTemplatesForSpecificMessages>
+  <ListOfExcludedPaths>
+	<Issue ExcludedPaths="*.resx" />
+	<Issue ExcludedPaths="*.Designer.cs" />
+  </ListOfExcludedPaths>
+</Lists>
