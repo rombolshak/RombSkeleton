@@ -2,7 +2,7 @@ configuration: Release
 image: Visual Studio 2017
 
 environment:
-  productName: RombSkeleton
+  PRODUCT_NAME: RombSkeleton
   sonar_login:
     secure: +fPGU8/Ueb05tX4cbo3EoLSMmS2EW0Ln0TtxKSHUo55LrJMvyvE2CqK7dRcGtL01
   secret_for_snk:
@@ -12,18 +12,18 @@ environment:
 
 dotnet_csproj:
   patch: true
-  file: '{APPVEYOR_BUILD_FOLDER}\**\*.csproj'
-  version: '{APPVEYOR_BUILD_VERSION}'
-  assembly_version: '{APPVEYOR_BUILD_VERSION}'
-  file_version: '{APPVEYOR_BUILD_VERSION}'
-  informational_version: '{APPVEYOR_BUILD_VERSION}'
+  file: '\**\*.csproj'
+  version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
 
 assembly_info:
   patch: true
-  file: '{APPVEYOR_BUILD_FOLDER}\**\AssemblyInfo.*'
-  assembly_version: '{APPVEYOR_BUILD_VERSION}'
-  assembly_file_version: '{APPVEYOR_BUILD_VERSION}'
-  assembly_informational_version: '{APPVEYOR_BUILD_VERSION}'
+  file: '\**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
 
 cache:
   - C:\ProgramData\chocolatey -> appveyor.yml
@@ -39,14 +39,14 @@ install:
   - gitversion /l console /output buildserver
 
 before_build:
-  - dotnet restore src\%productName%.sln
-  - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%productName%" /n:"%productName%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
+  - ps: dotnet restore src\$env:PRODUCT_NAME.sln
+  - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%PRODUCT_NAME%" /n:"%PRODUCT_NAME%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
 
 build_script:
-  - ps: dotnet build src\%productName%.sln
+  - ps: dotnet build src\$env:PRODUCT_NAME.sln
 
 after_build:
-  - ps: inspectcode.exe /o:src\Build\ReSharperRules\ListOfIssues.xml src\%productName%.sln
+  - ps: inspectcode.exe /o:src\Build\ReSharperRules\ListOfIssues.xml src\$env:PRODUCT_NAME.sln
   - ps: tools\Build\ReSharperRules\OutputAnalyzeFilter.ps1
   - ps: tools\Build\ReSharperRules\ProblemsChecker.ps1 -pathToFilteredXml src\Build\ReSharperRules\FilteredListOfIssues.xml
 
