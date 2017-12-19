@@ -9,7 +9,7 @@ environment:
     secure: 9wAuC5ZEdGrfCqltk4Ax6Q==
   COVERALLS_REPO_TOKEN:
     secure: C5rzrcxa1tpwN/APHa/93zFZpxAtnj0aol81DhY0w78cyn+Aj1kUIMbwSAG6B+jx
-	
+
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
@@ -17,7 +17,14 @@ dotnet_csproj:
   assembly_version: '{APPVEYOR_BUILD_VERSION}'
   file_version: '{APPVEYOR_BUILD_VERSION}'
   informational_version: '{APPVEYOR_BUILD_VERSION}'
-  
+
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{APPVEYOR_BUILD_VERSION}'
+  assembly_file_version: '{APPVEYOR_BUILD_VERSION}'
+  assembly_informational_version: '{APPVEYOR_BUILD_VERSION}'
+
 cache:
   - C:\ProgramData\chocolatey -> appveyor.yml
   
