@@ -12,7 +12,7 @@ environment:
 
 dotnet_csproj:
   patch: true
-  file: '\**\*.csproj'
+  file: '**\*.csproj'
   version: '{version}'
   assembly_version: '{version}'
   file_version: '{version}'
@@ -20,7 +20,7 @@ dotnet_csproj:
 
 assembly_info:
   patch: true
-  file: '\**\AssemblyInfo.*'
+  file: '**\AssemblyInfo.*'
   assembly_version: '{version}'
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
