@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace RombSkeletonTests
+namespace RombSkeleton.Tests
 {
 	public sealed class UnitTest
 	{
