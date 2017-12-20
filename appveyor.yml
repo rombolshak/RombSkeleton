@@ -52,7 +52,7 @@ after_build:
   - ps: tools\Build\ReSharperRules\ProblemsChecker.ps1 -pathToFilteredXml tools\Build\ReSharperRules\FilteredListOfIssues.xml
 
 test_script:
-  - OpenCover\tools\OpenCover.Console.exe -target:powershell.exe -targetargs:%APPVEYOR_BUILD_FOLDER%\tools\xunit_test.ps1 -filter:"+[*]* -[*.Tests]*" -register:user -returntargetcode 
+  - OpenCover\tools\OpenCover.Console.exe -target:powershell.exe -targetargs:%APPVEYOR_BUILD_FOLDER%\tools\xunit_test.ps1 -filter:"+[*]* -[*Tests]*" -register:user -returntargetcode -mergeoutput -output:.\TestResult.xml -oldStyle -searchdirs:APPVEYOR_BUILD_FOLDER\bin\Release\netcoreapp2.0
   
 after_test:
   - coveralls.net\tools\csmacnz.Coveralls.exe --opencover -i .\TestResult.xml
