@@ -26,7 +26,8 @@ assembly_info:
   assembly_informational_version: '{version}'
 
 cache:
-  - C:\ProgramData\chocolatey -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
   
 install:
   - choco install gitversion.portable -pre -y
@@ -46,9 +47,9 @@ build_script:
   - ps: dotnet build src\$env:PRODUCT_NAME.sln
 
 after_build:
-  - ps: inspectcode.exe /o:src\Build\ReSharperRules\ListOfIssues.xml src\$env:PRODUCT_NAME.sln
+  - ps: inspectcode.exe /o:tools\Build\ReSharperRules\ListOfIssues.xml src\$env:PRODUCT_NAME.sln
   - ps: tools\Build\ReSharperRules\OutputAnalyzeFilter.ps1
-  - ps: tools\Build\ReSharperRules\ProblemsChecker.ps1 -pathToFilteredXml src\Build\ReSharperRules\FilteredListOfIssues.xml
+  - ps: tools\Build\ReSharperRules\ProblemsChecker.ps1 -pathToFilteredXml tools\Build\ReSharperRules\FilteredListOfIssues.xml
 
 test_script:
   - OpenCover\tools\OpenCover.Console.exe -target:powershell.exe -targetargs:%APPVEYOR_BUILD_FOLDER%\tools\xunit_test.ps1 -filter:"+[*]* -[*.Tests]*" -register:user -returntargetcode 

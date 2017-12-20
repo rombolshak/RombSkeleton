@@ -12,5 +12,6 @@ if ($codeAnalyseOutput.SelectNodes("/Report/Issues/Project/Issue")  -ne $null)
         write-error $errorString
     }
     
-    throw "ReSharper rules have been broken!" 
+    throw "ReSharper rules have been broken!"
+	exit 1
 }
