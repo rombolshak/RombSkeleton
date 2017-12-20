@@ -43,4 +43,8 @@
 	<ItemGroup>
 		<Folder Include="Properties\" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RombSkeleton\RombSkeleton.csproj" />
+	</ItemGroup>
 </Project>
