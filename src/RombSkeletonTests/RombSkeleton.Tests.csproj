@@ -2,12 +2,18 @@
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<AssemblyVersion>1.1.0.0</AssemblyVersion>
+		<FileVersion>1.2.0.0</FileVersion>
+		<Version>1.3.0</Version>
+		<InformationalVersion>1.0.1+7</InformationalVersion>
+		<AssemblyName>RombSkeleton.Tests</AssemblyName>
+		<RootNamespace>RombSkeleton.Tests</RootNamespace>
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-		<IsPackable>false</IsPackable>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -20,7 +26,6 @@
 
 	<ItemGroup>
 		<Compile Include="..\..\tools\Build\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
-		<Compile Include="..\..\tools\Build\AssemblyVersion.cs" Link="Properties\AssemblyVersion.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
