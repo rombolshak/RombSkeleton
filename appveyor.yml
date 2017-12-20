@@ -4,7 +4,7 @@ image: Visual Studio 2017
 environment:
   PRODUCT_NAME: RombSkeleton
   sonar_login:
-    secure: +fPGU8/Ueb05tX4cbo3EoLSMmS2EW0Ln0TtxKSHUo55LrJMvyvE2CqK7dRcGtL01
+    secure: nIiH+lXeg922jNjQpH5/II8CoHZHxNXM0DpNvrybMKYBttnzdb+HBpUpIwB705Tq
   secret_for_snk:
     secure: 9wAuC5ZEdGrfCqltk4Ax6Q==
   COVERALLS_REPO_TOKEN:
@@ -41,7 +41,7 @@ install:
 
 before_build:
   - ps: dotnet restore src\$env:PRODUCT_NAME.sln
-  - MSBuild.SonarQube.Runner.exe begin /k:"rombolshak:%PRODUCT_NAME%" /n:"%PRODUCT_NAME%" /v:%APPVEYOR_BUILD_VERSION% /d:sonar.host.url=https://sonarqube.com /d:sonar.login=%sonar_login%
+  - MSBuild.SonarQube.Runner.exe begin /k:"%PRODUCT_NAME%" /o:"rombolshak-github" /n:"%PRODUCT_NAME%" /v:"%APPVEYOR_BUILD_VERSION%" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="%sonar_login%"
 
 build_script:
   - ps: dotnet build src\$env:PRODUCT_NAME.sln
