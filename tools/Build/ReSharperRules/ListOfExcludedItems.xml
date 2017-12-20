@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Lists>
-  <ListOfExcludedMessages>
-    <Issue Message="Access to foreach variable in closure. May have different behaviour when compiled with different versions of compiler" />
-    <Issue Message="Possible multiple enumeration of IEnumerable" />
-	
-  </ListOfExcludedMessages>
-  <ListOfPathsTemplatesForSpecificMessages>
-  </ListOfPathsTemplatesForSpecificMessages>
-  <ListOfExcludedPaths>
-	<Issue ExcludedPaths="*.resx" />
-	<Issue ExcludedPaths="*.Designer.cs" />
-  </ListOfExcludedPaths>
-</Lists>
+<AnalysisExclusions>
+	<ExcludedIssueTypes>
+		<IssueType Id="HtmlErrors" Justification="Не столь важные ошибки." />		
+		<IssueType Id="XMLErrors"  Justification="Не столь важные ошибки." />
+		<IssueType Id="PrivateFieldCanBeConvertedToLocalVariable" Justification="Не столь важные ошибки." />
+	</ExcludedIssueTypes>
+	<ExcludedProjects>
+		<Project Name="some-project-name" />
+	</ExcludedProjects>
+	<PathsTemplatesForSpecificMessages>
+		<SpecificMessage Message="*">
+			<Path Template="*chart.min.js" Justification="Тут подключается стороняя библиотека Chart.js"/>
+		</SpecificMessage>
+	</PathsTemplatesForSpecificMessages>
+</AnalysisExclusions>
