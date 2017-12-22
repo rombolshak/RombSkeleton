@@ -13,17 +13,17 @@ environment:
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '{version}'
+  version: '{GitVersion_InformationalVersion}'
   assembly_version: '$(GitVersion_AssemblySemVer)'
   file_version: '$(GitVersion_AssemblySemVer)'
-  informational_version: '{version}'
+  informational_version: '{GitVersion_InformationalVersion}'
 
 assembly_info:
   patch: true
   file: '**\AssemblyInfo.*'
   assembly_version: '$(GitVersion_AssemblySemVer)'
   assembly_file_version: '$(GitVersion_AssemblySemVer)'
-  assembly_informational_version: '{version}'
+  assembly_informational_version: '{GitVersion_InformationalVersion}'
 
 cache:
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
