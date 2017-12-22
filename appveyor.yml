@@ -13,7 +13,7 @@ environment:
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
-  version: '{GitVersion_InformationalVersion}'
+  version: '{GitVersion_FullSemVer}'
   assembly_version: '$(GitVersion_AssemblySemVer)'
   file_version: '$(GitVersion_AssemblySemVer)'
   informational_version: '{GitVersion_InformationalVersion}'
