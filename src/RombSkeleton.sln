@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RombSkeleton", "RombSkeleto
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RombSkeleton.Tests", "RombSkeletonTests\RombSkeleton.Tests.csproj", "{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeleton.Containers", "RombSkeleton.Containers\RombSkeleton.Containers.csproj", "{E0F3C4F7-FE3C-4804-B7CF-A5B1F2755C88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RombSkeleton.App", "RombSkeleton.App\RombSkeleton.App.csproj", "{80FDC1F3-AB9A-471D-ACAB-B8C40D21F4F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D1CFEFE-899F-47CC-BEC2-5E378D360A41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0F3C4F7-FE3C-4804-B7CF-A5B1F2755C88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0F3C4F7-FE3C-4804-B7CF-A5B1F2755C88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0F3C4F7-FE3C-4804-B7CF-A5B1F2755C88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0F3C4F7-FE3C-4804-B7CF-A5B1F2755C88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80FDC1F3-AB9A-471D-ACAB-B8C40D21F4F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FDC1F3-AB9A-471D-ACAB-B8C40D21F4F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FDC1F3-AB9A-471D-ACAB-B8C40D21F4F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FDC1F3-AB9A-471D-ACAB-B8C40D21F4F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

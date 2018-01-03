@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp2.0</TargetFramework>
-		<IsPackable>false</IsPackable>
-		<AssemblyVersion>1.1.1.1</AssemblyVersion>
-		<FileVersion>1.1.1.1</FileVersion>
-		<Version>1.1.1</Version>
-		<InformationalVersion>1.1.1+1</InformationalVersion>
-		<AssemblyName>RombSkeleton.Tests</AssemblyName>
-		<RootNamespace>RombSkeleton.Tests</RootNamespace>
+
 		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
 		<GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<AssemblyVersion>1.1.1.1</AssemblyVersion>
+		<FileVersion>1.1.1.1</FileVersion>
+		<Version>1.1.1</Version>
+		<InformationalVersion>1.1.1+1</InformationalVersion>
+		<StartupObject>RombSkeleton.App.Program</StartupObject>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -29,22 +29,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Compile Include="..\..\tools\Build\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
-		<PackageReference Include="xunit" Version="2.3.1" />
-		<PackageReference Include="xunit.runner.console" Version="2.3.1" />
-		<PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-		<DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Folder Include="Properties\" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Include="..\..\tools\Build\AssemblyInfo.cs" Link="Properties\AssemblyInfo.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RombSkeleton.Containers\RombSkeleton.Containers.csproj" />
 	  <ProjectReference Include="..\RombSkeleton\RombSkeleton.csproj" />
 	</ItemGroup>
+
 </Project>
