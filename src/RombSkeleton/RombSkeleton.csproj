@@ -12,6 +12,9 @@
 		<GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<TreatWarningAsErrors>true</TreatWarningAsErrors>
+		<ApplicationIcon />
+		<OutputType>Library</OutputType>
+		<StartupObject />
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
