@@ -1,7 +1,7 @@
 ﻿#region Usings
 
 using System;
-using Autofac;
+using System.Collections.Generic;
 
 #endregion
 
@@ -9,47 +9,43 @@ namespace RombSkeleton.Containers
 {
 	public sealed class IocContainer : IDisposable
 	{
-		public IocContainer()
-		{
-			_builder = new ContainerBuilder();
-		}
-
 		public Func<T> Register<T>(Func<T> objectCreator)
 		{
-			if (_scope != null)
+			if (_isRegistrationComplete)
 			{
 				throw new InvalidOperationException($"Cannot register {typeof(T)}: container registration is complete");
 			}
 
-			_builder.Register(_ => objectCreator());
-			return GetObjectGetter<T>();
+			var id = Guid.NewGuid();
+			_registeredObjects.Add(id, new Lazy<object>(() => objectCreator()));
+			return GetObjectGetter<T>(id);
 		}
 
 		public void OnRegistrationComplete()
 		{
-			_container = _builder.Build();
-			_scope = _container.BeginLifetimeScope();
+			_isRegistrationComplete = true;
 		}
 
 		public void Dispose()
 		{
-			_scope?.Dispose();
-			_container?.Dispose();
+			foreach (var registeredObject in _registeredObjects)
+			{
+				(registeredObject.Value.Value as IDisposable)?.Dispose();
+			}
 		}
 
-		private Func<T> GetObjectGetter<T>() =>
+		private Func<T> GetObjectGetter<T>(Guid id) =>
 			() =>
 			{
-				if (_scope == null)
+				if (!_isRegistrationComplete)
 				{
 					throw new InvalidOperationException($"Cannot resolve {typeof(T)} as objects registration is not complete yet");
 				}
 
-				return _scope.Resolve<T>();
+				return (T)_registeredObjects[id].Value;
 			};
 
-		private readonly ContainerBuilder _builder;
-		private IContainer _container;
-		private ILifetimeScope _scope;
+		private bool _isRegistrationComplete;
+		private readonly Dictionary<Guid, Lazy<object>> _registeredObjects = new Dictionary<Guid, Lazy<object>>();
 	}
 }

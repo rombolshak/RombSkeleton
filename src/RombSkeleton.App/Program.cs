@@ -5,7 +5,7 @@ using RombSkeleton.Containers;
 namespace RombSkeleton.App
 {
 	[SuppressMessage("ReSharper", "UnusedMember.Global", Justification = "Application startup")]
-	internal class Program
+	internal static class Program
 	{
 		// ReSharper disable once UnusedMember.Local
 		private static void Main()

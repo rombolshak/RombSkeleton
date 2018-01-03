@@ -45,6 +45,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\RombSkeleton.Containers\RombSkeleton.Containers.csproj" />
 	  <ProjectReference Include="..\RombSkeleton\RombSkeleton.csproj" />
 	</ItemGroup>
 </Project>
