@@ -35,10 +35,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <PackageReference Include="Autofac" Version="4.6.2" />
-	</ItemGroup>
-	
-	<ItemGroup>
 	  <ProjectReference Include="..\RombSkeleton\RombSkeleton.csproj" />
 	</ItemGroup>
 
